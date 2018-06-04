@@ -1,0 +1,27 @@
+<p-table #dt [columns]="cols" [value]="employees" [paginator]="true" [rows]="15">
+    <ng-template pTemplate="caption">
+        <div class="ui-helper-clearfix">
+          <button type="button" pButton icon="fa-file-o" iconPos="left" label="All Data" (click)="dt.exportCSV()" style="float:left"></button>
+          <button type="button" pButton icon="fa-file" iconPos="left" label="Selection Only" (click)="dt.exportCSV({selectionOnly:true})" style="float:right"></button>
+          
+          <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto; float:right;margin-right:5px">
+          <i class="fa fa-search" style="margin:4px 4px 0 0" style="float:right; padding-right: 5px; padding-top: 5px"></i>
+        </div>
+      </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field" [ngClass]="col.field == 'username' || col.field == 'pviname' || col.field == 'title' || col.field == 'extension'? 'narrow-column' : (col.field == 'id'? 'thin-column' : (col.field == 'email'? 'large-column':'normal-column'))">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+

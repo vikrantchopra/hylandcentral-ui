@@ -1,0 +1,15 @@
+.thin-column {
+  width: 2em;
+}
+
+.narrow-column {
+  width: 5em;
+}
+
+.normal-column {
+  width: 7em;
+}
+
+.large-column {
+  width: 10em;
+}
